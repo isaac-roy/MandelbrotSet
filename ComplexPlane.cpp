@@ -10,7 +10,7 @@
 using namespace std;
 using namespace sf;
 
-ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
+ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)         // Eric
 {
     m_vArray.setPrimitiveType(Points);
     m_vArray.resize(pixelWidth * pixelHeight);
@@ -23,12 +23,12 @@ ComplexPlane::ComplexPlane(int pixelWidth, int pixelHeight)
     m_aspectRatio = static_cast<float>(pixelHeight) / static_cast<float>(pixelWidth);
 }
 
-void ComplexPlane::draw(RenderTarget& target, RenderStates states) const
+void ComplexPlane::draw(RenderTarget& target, RenderStates states) const            // Eric
 {
     target.draw(m_vArray);
 }
 
-void ComplexPlane::updateRender()
+void ComplexPlane::updateRender()                       // Eric
 {
     if(m_state == State::CALCULATING)
     {
@@ -48,7 +48,7 @@ void ComplexPlane::updateRender()
     }
 }
 
-void ComplexPlane::zoomIn()
+void ComplexPlane::zoomIn()             // Isaac
 {
     m_zoom_count++;
     
@@ -60,7 +60,7 @@ void ComplexPlane::zoomIn()
     m_state = State::CALCULATING;
 }
 
-void ComplexPlane::zoomOut()
+void ComplexPlane::zoomOut()            // Isaac
 {
     m_zoom_count--;
     
@@ -72,18 +72,18 @@ void ComplexPlane::zoomOut()
     m_state = State::CALCULATING;
 }
 
-void ComplexPlane::setCenter(Vector2i mousePixel)
+void ComplexPlane::setCenter(Vector2i mousePixel)           // Isaac
 {
     m_plane_center = ComplexPlane::mapPixelToCoords(mousePixel);
     m_state = State::CALCULATING;
 }
 
-void ComplexPlane::setMouseLocation(Vector2i mousePixel)
+void ComplexPlane::setMouseLocation(Vector2i mousePixel)            // Isaac
 {
     m_mouseLocation = ComplexPlane::mapPixelToCoords(mousePixel);
 }
 
-void ComplexPlane::loadText(Text& text)
+void ComplexPlane::loadText(Text& text)                     // Isaac
 {
     stringstream ss;
 
@@ -96,7 +96,7 @@ void ComplexPlane::loadText(Text& text)
     text.setString(ss.str());
 }
 
-size_t ComplexPlane::countIterations(Vector2f coord)
+size_t ComplexPlane::countIterations(Vector2f coord)            // Isaac
 {
     // c = x + yi in the complex plane
     complex<float> c(coord.x, coord.y);
@@ -115,7 +115,7 @@ size_t ComplexPlane::countIterations(Vector2f coord)
     return iterations;
 }
 
-void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
+void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)          // Eric
 {
     // We're doing 8 colors since 8 x 8 = 64 and NUM_ITERATIONS = 64
     size_t regionSize = MAX_ITER / 8;
@@ -194,7 +194,7 @@ void ComplexPlane::iterationsToRGB(size_t count, Uint8& r, Uint8& g, Uint8& b)
     }
 }
 
-Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)
+Vector2f ComplexPlane::mapPixelToCoords(Vector2i mousePixel)                // Eric
 {
     Vector2f coords;
 
