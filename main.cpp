@@ -11,7 +11,7 @@ using namespace sf;
 
 int main()
 {
-    VideoMode desktop(
+    VideoMode desktop(                                          // Isaac (All until the first Eric)
         VideoMode::getDesktopMode().width / 2,
         VideoMode::getDesktopMode().height / 2
     );
@@ -57,7 +57,7 @@ int main()
 				window.close();
 		    }
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == Event::MouseButtonPressed)                                     // Eric
             {
                 if(event.mouseButton.button == Mouse::Left)
                 {
@@ -72,12 +72,12 @@ int main()
                 }
             }
 
-            if(event.type == Event::MouseMoved)
+            if(event.type == Event::MouseMoved)                                         // Isaac
             {
                 mandelbrotPlane.setMouseLocation(Mouse::getPosition(window));
             }
         }
-        if(Keyboard::isKeyPressed(Keyboard::Escape))
+        if(Keyboard::isKeyPressed(Keyboard::Escape))                                    // Isaac
 		{
 			window.close();
 		}
@@ -88,7 +88,7 @@ int main()
 		****************************************
 		*/
 
-        mandelbrotPlane.updateRender();
+        mandelbrotPlane.updateRender();                                                 // Eric
         mandelbrotPlane.loadText(userText);
 
         /*
